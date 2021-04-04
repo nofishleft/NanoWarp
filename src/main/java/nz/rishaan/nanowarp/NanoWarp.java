@@ -22,6 +22,11 @@ public final class NanoWarp extends JavaPlugin {
 
 	HashMap<String, Location> warpPoints;
 
+	static final String CREATE_PERMISSION = "nanowarp.create";
+	static final String DELETE_PERMISSION = "nanowarp.delete";
+	static final String LIST_PERMISSION = "nanowarp.list";
+	static final String USE_PERMISSION = "nanowarp.use";
+
 	@Override
 	public void onEnable() {
 		// Plugin startup logic
@@ -138,7 +143,7 @@ public final class NanoWarp extends JavaPlugin {
 
 	private boolean createCommand(CommandSender sender, String[] args) {
 		boolean isPlayer = sender instanceof Player;
-		if (isPlayer && !sender.hasPermission("")) {
+		if (isPlayer && !sender.hasPermission(CREATE_PERMISSION)) {
 			sender.sendMessage("");
 			return false;
 		}
@@ -210,7 +215,7 @@ public final class NanoWarp extends JavaPlugin {
 	}
 
 	private boolean deleteCommand(CommandSender sender, String[] args) {
-		if (sender instanceof Player && !sender.hasPermission("")) {
+		if (sender instanceof Player && !sender.hasPermission(DELETE_PERMISSION)) {
 			sender.sendMessage("No perm");
 			return false;
 		}
@@ -238,7 +243,7 @@ public final class NanoWarp extends JavaPlugin {
 			return true;
 		}
 
-		if (!sender.hasPermission("")) {
+		if (!sender.hasPermission(USE_PERMISSION)) {
 			sender.sendMessage("You don't have permission to use this command.");
 			return true;
 		}
@@ -302,7 +307,7 @@ public final class NanoWarp extends JavaPlugin {
 			return false;
 		}
 
-		if (sender instanceof Player && !sender.hasPermission("")) {
+		if (sender instanceof Player && !sender.hasPermission(LIST_PERMISSION)) {
 			sender.sendMessage("You don't have permission to use this command.");
 			return true;
 		}
