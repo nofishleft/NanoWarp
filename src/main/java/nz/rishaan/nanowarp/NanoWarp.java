@@ -25,6 +25,8 @@ public final class NanoWarp extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		// Plugin startup logic
+		loadConfig();
+
 		try {
 			loadData();
 		} catch (Exception e) {
@@ -48,6 +50,13 @@ public final class NanoWarp extends JavaPlugin {
 
 	public void assertIsDouble(String path) throws Exception {
 		if (!dataConfig.isDouble(path)) throw new Exception(String.format("'%s' does not contain a valid double", path));
+	}
+
+	int blockRadius;
+
+	public void loadConfig() {
+		this.saveDefaultConfig();
+		blockRadius = this.getConfig().getInt("blockRadius", 10);
 	}
 
 	public void loadData() throws Exception {
@@ -100,7 +109,7 @@ public final class NanoWarp extends JavaPlugin {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-		switch (label.toLowerCase()) {
+		switch (command.getName().toLowerCase()) {
 			case "warpcreate":
 				return createCommand(sender, args);
 			case "warpdelete":
@@ -252,7 +261,7 @@ public final class NanoWarp extends JavaPlugin {
 			double playerX = player.getLocation().getX();
 			double playerZ = player.getLocation().getZ();
 			for (Location location1 : warpPoints.values()) {
-				if (Math.abs(playerX - location1.getX()) < 10 && Math.abs(playerZ - location1.getZ()) < 10) {
+				if (Math.abs(playerX - location1.getX()) < blockRadius && Math.abs(playerZ - location1.getZ()) < blockRadius) {
 					inRange = true;
 					break;
 				}
