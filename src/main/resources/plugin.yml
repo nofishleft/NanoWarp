@@ -32,9 +32,13 @@ permissions:
       nanowarp.delete: true
   nanowarp.use:
     description: Allows teleporting to warp points
+    default: true
   nanowarp.list:
     description: Allows listing warp points
+    default: true
   nanowarp.create:
     description: Allows creating warp points
+    default: op
   nanowarp.delete:
     description: Allows deleting warp points
+    default: op
