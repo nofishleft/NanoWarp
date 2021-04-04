@@ -1,0 +1,40 @@
+name: NanoWarp
+version: @version@
+main: nz.rishaan.nanowarp.NanoWarp
+api-version: 1.16
+authors: [ github_nofishleft ]
+website: github.com/nofishleft
+commands:
+  warp:
+    description: Teleport to warp points
+    permission: nanowarp.use
+    usage: /<command> <warp_name>
+  warpcreate:
+    description: Create warp points
+    permission: nanowarp.create
+    usage: /<command> [x y z [world]] <warp_name>
+  warpdelete:
+    description: Delete warp points
+    permission: nanowarp.delete
+    usage: /<command> <warp_name>
+  warplist:
+    description: List warp points
+    permission: nanowarp.list
+    usage: /<command>
+
+permissions:
+  nanowarp.*:
+    description: Gives access to all warp commands
+    children:
+      nanowarp.use: true
+      nanowarp.list: true
+      nanowarp.create: true
+      nanowarp.delete: true
+  nanowarp.use:
+    description: Allows teleporting to warp points
+  nanowarp.list:
+    description: Allows listing warp points
+  nanowarp.create:
+    description: Allows creating warp points
+  nanowarp.delete:
+    description: Allows deleting warp points
